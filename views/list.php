@@ -21,7 +21,7 @@ foreach($asks as $ask){
 						<div class="r_details" style="width:550px;">
 									<p class="r_date r-3 bottom-cap"><?php echo $reply->date; ?></p>
 									<div class="r_description"> <?php echo $reply->message; ?>  
-									<div class="r_link">Descarga: <a href="http://"><?php echo $reply->link; ?></a></div>
+									<div class="r_link">Descarga: <a href="http://"><?php echo $reply->file_link; ?></a></div>
 									</div>
 									<p class="r_location">Por: <b><?php echo $reply->author; ?></b></p>
 						</div>
