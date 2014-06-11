@@ -8,11 +8,17 @@
  * http://www.gnu.org/copyleft/lesser.html
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
+ /* Nombre, 
+  * Documento (tipo y número), 
+  * domiclio/barrio, 
+  * mail 
+  * cuál es la pregunta >> * obligatorio. 
+  * Teléfono optativo */
  ?>  
 
  	
  
-<div id="" class="container main-content">
+<div id="" class="big-block container main-content">
 	<div class="row header-title">
 		<div class="main-header">		
 		 	<h1 class="bold-italic upper"><?php echo Kohana::lang('ci_ask.title'); ?> </h1>			 	
@@ -51,32 +57,31 @@
 			?>
 			<?php print form::open(NULL, array('id' => 'contactForm', 'name' => 'contactForm')); ?>
 			<div class="form-group">
-				<label><?php echo Kohana::lang('ui_main.contact_name'); ?>:</label>
-				<?php print form::input('contact_name', $form['contact_name'], ' class="text form-control"'); ?>
+				<label><?php echo Kohana::lang('ui_main.contact_name'); ?> <span class="required">*</span></label>
+				<?php print form::input('contact_name', $form['contact_name'], ' class="text form-control"'); ?>				
 			</div>
 			<div class="form-group">
-				<label><?php echo Kohana::lang('ui_main.contact_email'); ?>:</label>
+				<label><?php echo Kohana::lang('ci_ask.identification'); ?> <span class="required">*</span></label>
+				<?php print form::input('contact_identification', $form['contact_identification'], ' class="text form-control"'); ?>
+			</div>
+			<div class="form-group">
+				<label><?php echo Kohana::lang('ci_ask.address'); ?> <span class="required">*</span></label>
+				<?php print form::input('contact_address', $form['contact_address'], ' class="text form-control"'); ?>
+			</div>
+			<div class="form-group">
+				<label><?php echo Kohana::lang('ui_main.contact_email'); ?> <span class="required">*</span></label>
 				<?php print form::input('contact_email', $form['contact_email'], ' class="text form-control"'); ?>
 			</div>
 			<div class="form-group">
-				<label><?php echo Kohana::lang('ui_main.contact_phone'); ?>:</label>
+				<label><?php echo Kohana::lang('ui_main.contact_phone'); ?></label>
 				<?php print form::input('contact_phone', $form['contact_phone'], ' class="text form-control"'); ?>
-			</div>
-			<div class="repor_row">
-				<label>Organismo:</label>
-				<?php $selection = array('organismo1' =>'Organismo 1', 'organismo2' => 'Organismo 2', 'organismo3' => 'Organismo 3'); ?>
-				<?php print form::dropdown('input_dropdown',$selection,'standard', ' class="text form-control"'); ?><br>
-			</div>
+			</div>						
 			<div class="form-group">
-				<label><?php echo Kohana::lang('ui_main.contact_subject'); ?>:</label>
-				<?php print form::input('contact_subject', $form['contact_subject'], ' class="text form-control"'); ?>
-			</div>								
-			<div class="form-group">
-				<label><?php echo Kohana::lang('ui_main.contact_message'); ?>:</label>
+				<label><?php echo Kohana::lang('ci_ask.message'); ?> <span class="required">*</span> </label>
 				<?php print form::textarea('contact_message', $form['contact_message'], ' rows="4" cols="40" class="textarea form-control long" ') ?>
 			</div>		
 			<div class="form-group">
-				<label><?php echo Kohana::lang('ui_main.contact_code'); ?>:</label>
+				<label><?php echo Kohana::lang('ui_main.contact_code'); ?></label>
 				<?php print $captcha->render(); ?>
 				<?php print form::input('captcha', $form['captcha'], ' class="text"'); ?>
 			</div>

@@ -12,7 +12,7 @@
 
  	
  
-<div id="" class="container main-content">
+<div id="" class="big-block container main-content">
 	<div class="row header-title">
 		<div class="main-header">		
 		 	<h1 class="bold-italic upper"><?php echo Kohana::lang('ci_ask.title'); ?> </h1>			 	

@@ -69,7 +69,14 @@ Class Ci_Ask_Controller extends Main_Controller
    		$this->template->content = new View('question_submit');
 		$this->template->content->title = Kohana::lang('ci_ask.title');
 		
-		$form = array('contact_name' => '', 'contact_email' => '', 'contact_phone' => '', 'contact_subject' => '', 'contact_message' => '', 'captcha' => '');
+		$form = array(
+		'contact_name' => '', 
+		'contact_email' => '', 
+		'contact_phone' => '', 
+		'contact_address' => '', 
+		'contact_identification' => '', 
+		'contact_message' => '', 
+		'captcha' => '');
 
 		// Copy the form as errors, so the errors will be stored with keys
 		// corresponding to the form field names
@@ -86,31 +93,83 @@ Class Ci_Ask_Controller extends Main_Controller
        		//  Add some filters
         	$post->pre_filter('trim', TRUE);
 
-	        // Add some rules, the input field, followed by a list of checks, carried out in order
+	        // Add some rules, hay quethe input field, followed by a list of checks, carried out in order
         	//$post->add_rules('data_point.*','required','numeric','between[1,15]');
         	//
-        	            	// $post validate check
+			$post->add_rules('contact_name', 'required', 'length[3,100]');
+			$post->add_rules('contact_email', 'required', 'email', 'length[4,100]');
+			$post->add_rules('contact_address', 'required', 'length[3,100]');
+			$post->add_rules('contact_identification', 'required', 'length[3,100]');
+			$post->add_rules('contact_message', 'required');
+			$post->add_rules('captcha', 'required', 'Captcha::valid');
+        	
+        	// $post validate check
 	        if ($post->validate())
 			{ 
 				
+				$ask = new Ci_Ask_Model();				
+				$ask->author = $post->contact_name;
+				$ask->email = $post->contact_email;
+				$ask->address = $post->contact_address;
+				$ask->phone = $post->contact_phone;
+				$ask->identification = $post->contact_identification;
+				$ask->message = $post->contact_message;
+				$ask->ip = $_SERVER['REMOTE_ADDR'];
+				$subject_ask = Kohana::lang('ci_ask.subject')." - ".date("d-m-Y",time());
+				$ask->subject = $subject_ask;
+				$ask->date = date("Y-m-d H:i:s",time());
+				$ask->save();
+
+				
+				
+				// Yes! everything is valid - Send email
+				$site_email = Kohana::config('settings.site_email');
+				$subject = Kohana::lang('ci_ask.email_send.subject');
+				$message = Kohana::lang('ui_admin.sender') . ": " . $post->contact_name . "\n";
+				$message .= Kohana::lang('ui_admin.email') . ": " . $post->contact_email . "\n";
+				$message .= Kohana::lang('ui_admin.phone') . ": " . $post->contact_phone . "\n\n";
+				$message .= Kohana::lang('ui_admin.message') . ": \n" . $post->contact_message . "\n\n\n";
+				$message .= "~~~~~~~~~~~~~~~~~~~~~~\n";
+				$message .= Kohana::lang('ui_admin.sent_from_website') . url::base();
+
+				// Send Admin Message
+				try
+				{
+					//email::send($site_email, $post->contact_email, $subject, $message, FALSE);
+	
+	
+					$form_sent = TRUE;
+					
+					url::redirect('ci_ask');
+				}
+				catch (Exception $e)
+				{
+					// repopulate the form fields
+					$form = arr::overwrite($form, $post->as_array());
+
+					// Manually add an error message for the email send failure.
+					$errors['email_send'] = Kohana::lang('contact.email_send.failed');
+
+					// populate the error fields, if any
+					$errors = arr::merge($errors, $post->errors('contact'));
+					$form_error = TRUE;
+				}
 
 			}
 	      		// Validation errors
 	   		else
 			{ 
-			        	// repopulate the form fields
-				        //$form = arr::overwrite($form, $post->as_array());
+				// Repopulate the form fields
+				$form = arr::overwrite($form, $post->as_array());
 
-				        // populate the error fields, if any
-				        //$errors = arr::overwrite($errors, $post->errors('report'));
-				       // $form_error = TRUE;
-			        
+				// Populate the error fields, if any
+				$errors = arr::merge($errors, $post->errors('ci_ask'));
+				$form_error = TRUE;
 	     	
 	   		} 
 		     
 
         }  
-
 
 
 		$this->template->content->form = $form;
@@ -119,5 +178,19 @@ Class Ci_Ask_Controller extends Main_Controller
 		$this->template->content->form_sent = $form_sent;
 		$this->template->content->captcha = $captcha;
 	}
+	
+	/**
+	 * Report Thanks Page
+	 */
+	public function thanks()
+	{
+		$this->template->header->this_page = 'reports_submit';
+		$this->template->content = new View('reports/submit_thanks');
+		// Get Site Email
+		$this->template->content->report_email = Kohana::config('settings.site_email');
+	}
+	
+	
 
 }
+
