@@ -113,7 +113,8 @@ if ($form_saved) {
 									<li>
 										<?php
 											if($entry_active == 1) {
-												echo "<a href='".url::site()."admin/messages/ci_ask/reply/".$entry_id."'>Editar Respuesta</a>";
+												echo "Respondido";
+												// echo "<a href='".url::site()."admin/messages/ci_ask/reply/".$entry_id."'>Editar Respuesta</a>";
 											} else {
 												echo "<a href='".url::site()."admin/messages/ci_ask/reply/".$entry_id."'>Responder</a>";
 											}

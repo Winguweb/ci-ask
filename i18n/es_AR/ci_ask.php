@@ -11,6 +11,7 @@
 		'contact_name.required' => 'El campo nombre es requerido',
 		'identification'	=> 'Su DNI (tipo y número)',
 		'message'		=> 'Su mensaje',
+		'reply'			=> 'Respuesta',
 		'address'		=> 'Su domicilio/barrio',
 		'to_review'					=> 'En espera de revisión',
 		'reviewed'					=> 'Revisado',
