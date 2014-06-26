@@ -81,7 +81,6 @@ Class Ci_Ask_Controller extends Main_Controller
 		'contact_email' => '', 
 		'contact_phone' => '', 
 		'contact_address' => '', 
-		'contact_identification' => '', 
 		'contact_message' => '', 
 		'captcha' => '');
 
@@ -117,8 +116,7 @@ Class Ci_Ask_Controller extends Main_Controller
 				$ask->author = $post->contact_name;
 				$ask->email = $post->contact_email;
 				$ask->address = $post->contact_address;
-				$ask->phone = $post->contact_phone;
-				$ask->identification = $post->contact_identification;
+				$ask->phone = $post->contact_phone;				
 				$ask->message = $post->contact_message;
 				$ask->ip = $_SERVER['REMOTE_ADDR'];
 				$subject_ask = Kohana::lang('ci_ask.subject')." - ".date("d-m-Y",time());
