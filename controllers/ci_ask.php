@@ -29,9 +29,12 @@ Class Ci_Ask_Controller extends Main_Controller
 		
 		// Get the report listing view
 		$ask_listing_view = $this->_get_ask_listing_view();
+		
+		
 
 		// Set the view
 		$this->template->content->ask_listing_view = $ask_listing_view;
+		
 	}
 	
 	/**
@@ -45,12 +48,16 @@ Class Ci_Ask_Controller extends Main_Controller
 
 		$asks = ORM::factory('ci_ask')->find_all();
 		
+		$q = ORM::factory('ci_ask')
+						->where("type = 1")							
+						->find_all();
+		
 		// Fetch all incidents
 		//$incidents = reports::fetch_incidents(TRUE);
 
 		// Set the view content
 		$asks_listing->asks = $asks;
-
+		$asks_listing->replys = $q;
 
 		//Set default as not showing pagination. Will change below if necessary.
 		//$report_listing->pagination = "";
