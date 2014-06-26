@@ -105,8 +105,7 @@ Class Ci_Ask_Controller extends Main_Controller
         	//
 			$post->add_rules('contact_name', 'required', 'length[3,100]');
 			$post->add_rules('contact_email', 'required', 'email', 'length[4,100]');
-			$post->add_rules('contact_address', 'required', 'length[3,100]');
-			$post->add_rules('contact_identification', 'required', 'length[3,100]');
+			$post->add_rules('contact_address', 'required', 'length[3,100]');			
 			$post->add_rules('contact_message', 'required');
 			$post->add_rules('captcha', 'required', 'Captcha::valid');
         	
