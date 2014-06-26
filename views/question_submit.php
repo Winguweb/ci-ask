@@ -73,7 +73,7 @@
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ci_ask.address'); ?> <span class="required">*</span></label>
-						<div class="col-sm-8">
+						<div class="col-sm-9">
 							<?php print form::input('contact_address', $form['contact_address'], ' class="text form-control"'); ?>
 						</div>
 					</div>

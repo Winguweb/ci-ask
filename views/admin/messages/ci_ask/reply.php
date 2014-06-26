@@ -20,8 +20,34 @@
 
 	<h2>
 		<?php admin::messages_subtabs("ci_ask"); ?>
-	</h2>		
-
+	</h2>	
+	<?php	
+		if ($form_error)
+		{
+			?>
+			<!-- red-box -->
+			<div class="alert alert-danger">						
+				<ul style="list-style:none;">
+					<?php
+					foreach ($errors as $error_item => $error_description)
+					{
+						print (!$error_description) ? '' : "<li><span class='glyphicon glyphicon-remove'></span> " . $error_description . "</li>";
+					}
+					?>
+				</ul>
+			</div>
+			<?php
+		}
+		if ($form_sent)
+		{
+			?>
+			<!-- green-box -->
+			<div class="alert alert-success">
+				<p><span class="glyphicon glyphicon-ok"></span><?php echo Kohana::lang('ui_main.contact_message_has_send'); ?></p>
+			</div>
+			<?php
+		}								
+	?>
 	<?php print form::open(NULL, array('enctype' => 'multipart/form-data', 'id' => 'reportForm', 'name' => 'reportForm')); ?>
 		<input type="hidden" name="save" id="save" value="">
 		<div  class="report-form">	
@@ -29,7 +55,7 @@
 				<h3><?php echo Kohana::lang('ci_ask.reply') ?></h3>
 				<div class="btns" style="float:right;">
 					<ul>
-						<li><a href="#" class="btn_save"><?php echo utf8::strtoupper(Kohana::lang('ui_main.save_report'));?></a></li>
+						<li><input name="submit" type="submit" value="GUARDAR" class="btn_save" /><</li>
 						<li><a href="#" class="btn_save_close"><?php echo utf8::strtoupper(Kohana::lang('ui_main.save_close'));?></a></li>
 					</ul>
 				</div>
@@ -54,27 +80,23 @@
 			<div class="f-col-1">
 				<div class="row">
 					<h4><?php echo Kohana::lang('ui_main.contact_name'); ?>:</h4>
-					<?php print form::input('contact_name', $form['contact_name'], ' class="text title"'); ?>
+					<?php print form::input('reply_name', $form['reply_name'], ' class="text title"'); ?>
 				</div>
 					
 				<div class="row">
 					<h4><?php echo Kohana::lang('ui_main.contact_message'); ?>:</h4>
-					<?php print form::textarea('contact_message', $form['contact_message'], ' rows="4" cols="40" class="textarea " ') ?>
+					<?php print form::textarea('reply_message', $form['reply_message'], ' rows="4" cols="40" class="textarea " ') ?>
 				</div>	
 
 				<div class="row link-row">
-					<h4><?php echo Kohana::lang('ui_main.upload_file');?></h4>
-					<div class="file link-row">
-					<?php print form::upload('file', '', ' class="text long"'); ?>
-					<?php print "<input type=\"hidden\" name=\"file_id\" value=\"\" id=\"file_id\">"; ?>
-					</div>
+					<h4><?php echo "Link al archivo"?></h4>
+					<?php print form::input('reply_link', $form['reply_link'], ' class="text title"'); ?>
 				</div>		
 
 			
 				<div class="btns">
 					<ul>
-						<li><a href="#" class="btn_save"><?php echo utf8::strtoupper(Kohana::lang('ui_main.save_report'));?></a></li>
-						<li><a href="#" class="btn_save_close"><?php echo utf8::strtoupper(Kohana::lang('ui_main.save_close'));?></a></li>					
+						<li><input name="submit" type="submit" value="GUARDAR" class="btn_save" /></li>								
 						<li><a href="<?php echo url::site().'admin/messages/ci_ask';?>" class="btns_red"><?php echo utf8::strtoupper(Kohana::lang('ui_main.cancel'));?></a></li>
 					</ul>
 				</div>						

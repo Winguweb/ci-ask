@@ -1,7 +1,7 @@
 <?php
 $replys = $asks;
 foreach($asks as $ask){
-	if($ask->type == '0') {
+	if($ask->type == '0' && $ask->ask_active == '1') {
 		?>
 		<div id="incident_<?php echo $ask->id ?>" class="col-xs-12 col-md-12 pregunta">
 			<div class="wrapper row">

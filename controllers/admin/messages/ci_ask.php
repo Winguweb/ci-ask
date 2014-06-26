@@ -114,8 +114,9 @@ Class Ci_Ask_Controller extends Admin_Controller
 		self::processSubmit();
 		
 		$form = array(
-			'contact_name' => '', 
-			'contact_message' => '');
+			'reply_name' => '', 
+			'reply_message' => '',
+			'reply_link' => '');
 		
 		$captcha = Captcha::factory();
 		$errors = $form;
@@ -124,7 +125,90 @@ Class Ci_Ask_Controller extends Admin_Controller
 
 		$this->template->content = new View('admin/messages/ci_ask/reply');
 		$this->template->content->title = Kohana::lang('ci_ask.title');	
-		
+	
+
+		if ($_POST)
+		{
+			// Instantiate Validation, use $post, so we don't overwrite $_POST fields with our own things
+			$post = Validation::factory($_POST);
+
+       		//  Add some filters
+        	$post->pre_filter('trim', TRUE);
+
+	        // Add some rules, hay quethe input field, followed by a list of checks, carried out in order
+        	//$post->add_rules('data_point.*','required','numeric','between[1,15]');
+        	//
+			$post->add_rules('reply_name', 'required', 'length[3,100]');
+			$post->add_rules('reply_message', 'required');
+
+        	
+        	// $post validate check
+	        if ($post->validate()) {
+
+				$ask = new Ci_Ask_Model();				
+				$ask->author = $post->reply_name;
+				$ask->message = $post->reply_message;
+				$ask->file_link = $post->reply_link;
+				$ask->reply_to = $ask_id;
+				$ask->type = '1';
+				$ask->ip = $_SERVER['REMOTE_ADDR'];
+				$ask->date = date("Y-m-d H:i:s",time());
+				$ask->save();
+				
+				$question = ORM::factory('ci_ask')
+						->where("type = 0")	
+						->where("id", $ask_id)
+						->find();
+				$question->ask_active = '1';
+				$question->save();
+				
+				
+				// Yes! everything is valid - Send email
+				/*
+				$site_email = Kohana::config('settings.site_email');
+				$subject = Kohana::lang('ci_ask.email_send.subject');
+				$message = Kohana::lang('ui_admin.sender') . ": " . $post->contact_name . "\n";
+				$message .= Kohana::lang('ui_admin.email') . ": " . $post->contact_email . "\n";
+				$message .= Kohana::lang('ui_admin.phone') . ": " . $post->contact_phone . "\n\n";
+				$message .= Kohana::lang('ui_admin.message') . ": \n" . $post->contact_message . "\n\n\n";
+				$message .= "~~~~~~~~~~~~~~~~~~~~~~\n";
+				$message .= Kohana::lang('ui_admin.sent_from_website') . url::base();
+				*/
+
+				// Send Admin Message
+				try
+				{
+					//email::send($site_email, $post->contact_email, $subject, $message, FALSE);	
+	
+					$form_sent = TRUE;
+					url::redirect(url::site().'admin/messages/ci_ask');
+				}
+				catch (Exception $e)
+				{
+					// repopulate the form fields
+					$form = arr::overwrite($form, $post->as_array());
+
+					// Manually add an error message for the email send failure.
+					$errors['email_send'] = Kohana::lang('contact.email_send.failed');
+
+					// populate the error fields, if any
+					$errors = arr::merge($errors, $post->errors('contact'));
+					$form_error = TRUE;
+				}
+
+
+
+			} else {
+				// Repopulate the form fields
+				$form = arr::overwrite($form, $post->as_array());
+
+				// Populate the error fields, if any
+				$errors = arr::merge($errors, $post->errors('ci_ask'));
+				$form_error = TRUE;
+			}
+		}
+
+	
 		$reply = ORM::factory('ci_ask')
 				->where("type = 0")	
 				->where("id", $ask_id)
@@ -142,101 +226,5 @@ Class Ci_Ask_Controller extends Admin_Controller
 		
 	}
 	
-	public static function save_media($post, $incident)
-	{
-		$upload_dir = Kohana::config('upload.directory', TRUE);	
-
-		// c. Photos
-		if ( ! empty($post->incident_photo))
-		{
-			$filenames = upload::save('incident_photo');
-			$i = 1;
-
-			foreach ($filenames as $filename)
-			{
-				$new_filename = $incident->id.'_'.$i.'_'.time();
-
-				//$file_type = substr($filename,-4);
-				$file_type =".".substr(strrchr($filename, '.'), 1); 
-				/				/ replaces the commented line above to take care of images with .jpeg extension.
-				
-				// Name the files for the DB
-				$media_link = $new_filename.$file_type;
-				$media_medium = $new_filename.'_m'.$file_type;
-				$media_thumb = $new_filename.'_t'.$file_type;
-
-				// IMAGE SIZES: 800X600, 400X300, 89X59
-				// Catch any errors from corrupt image files
-				try
-				{
-					$image = Image::factory($filename);
-					// Large size
-					if( $image->width > 800 || $image->height > 600 )
-					{
-						Image::factory($filename)->resize(800,600,Image::AUTO)
-							->save($upload_dir.$media_link);
-					}
-					else
-					{
-						$image->save($upload_dir.$media_link);
-					}
-
-				}
-				catch (Kohana_Exception $e)
-				{
-					// Do nothing. Too late to throw errors
-					$media_link = NULL;
-					$media_medium = NULL;
-					$media_thumb = NULL;
-				}
-					
-				// Okay, now we have these three different files on the server, now check to see
-				//   if we should be dropping them on the CDN
-				
-				if (Kohana::config("cdn.cdn_store_dynamic_content"))
-				{
-					$cdn_media_link = cdn::upload($media_link);
-					$cdn_media_medium = cdn::upload($media_medium);
-					$cdn_media_thumb = cdn::upload($media_thumb);
-					
-					// We no longer need the files we created on the server. Remove them.
-					$local_directory = rtrim($upload_dir, '/').'/';
-					if (file_exists($local_directory.$media_link))
-					{
-						unlink($local_directory.$media_link);
-					}
- 
-					if (file_exists($local_directory.$media_medium))
-					{
-						unlink($local_directory.$media_medium);
-					}
- 
-					if (file_exists($local_directory.$media_thumb))
-					{
-						unlink($local_directory.$media_thumb);
-					}
-					
-					$media_link = $cdn_media_link;
-					$media_medium = $cdn_media_medium;
-					$media_thumb = $cdn_media_thumb;
-				}
-
-				// Remove the temporary file
-				unlink($filename);
-
-				// Save to DB
-				$photo = new Media_Model();
-				$photo->location_id = $incident->location_id;
-				$photo->incident_id = $incident->id;
-				$photo->media_type = 1; // Images
-				$photo->media_link = $media_link;
-				$photo->media_medium = $media_medium;
-				$photo->media_thumb = $media_thumb;
-				$photo->media_date = date("Y-m-d H:i:s",time());
-				$photo->save();
-				$i++;
-			}
-		}
-	}
 
 }
