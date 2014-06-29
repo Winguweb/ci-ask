@@ -51,7 +51,7 @@ function respuesta($id, $replys) {
 									  <?php 
 									  if($reply->file_link != ' ') {
 										?>
-									   <button href="<?php echo $reply->file_link; ?>" class="btn btn-default btn-block upper bold-italic"><span class="glyphicon glyphicon-save"></span> Descargar Archivo Adjunto</button>
+									   <a href="<?php echo $reply->file_link; ?>" class="btn btn-default btn-block upper bold-italic"><span class="glyphicon glyphicon-save"></span> Descargar Archivo Adjunto</a>
 									   <?php
 										}
 										?>

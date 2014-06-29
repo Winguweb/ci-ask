@@ -29,8 +29,7 @@
 			<div class="row informacion-header">
 				<div class="col-xs-12 col-md-12" id="ingreso">
 					<h1 class="bold-italic upper">Pedidos de Información</h1>
-					<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Duis eu nunc quis mauris semper consequat sed ac purus. Sed odio dui, molestie in odio ac, posuere dignissim diam.</p>
+					<p class="lead"></p>
 				</div> 
 			</div>
 			<div class="row informacion-center">			
