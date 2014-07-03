@@ -46,7 +46,8 @@ Class Ci_Ask_Controller extends Main_Controller
 		// Load the report listing view
 		$asks_listing = new View('list');
 
-		$asks = ORM::factory('ci_ask')->find_all();
+		$asks = ORM::factory('ci_ask')					
+					->find_all();
 		
 		$q = ORM::factory('ci_ask')
 						->where("type = 1")							

@@ -35,11 +35,13 @@
 			<div class="row informacion-center">			
 				<?php echo $ask_listing_view; ?>
 			</div> <!-- informacion-center -->
+			<!--
 			<div class="row informacion-bottom">
 				<div class="col-xs-12 col-md-12">
 					<button type="submit" class="btn btn-default btn-lg upper bold-italic btn-block">Cargar más consultas</button>
 				</div> 
 			</div>
+			-->
 		</div>
 		<div class="col-xs-12 col-md-4 sidebar">
 			<div class="buttons">
