@@ -70,7 +70,7 @@
 				<?php
 				$name = "";
 				$email = "";
-				if(isset($loggedin_user){				
+				if(isset($loggedin_user)){				
 					$name = ($loggedin_user != FALSE) ? $loggedin_user->name : '';
 					$email = ($loggedin_user != FALSE) ? $loggedin_user->email : '';
 				} 
