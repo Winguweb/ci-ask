@@ -76,6 +76,12 @@ Class Ci_Ask_Controller extends Main_Controller
 		$this->template->header->this_page ='ask';
    		$this->template->content = new View('question_submit');
 		$this->template->content->title = Kohana::lang('ci_ask.title');
+	
+	    if ( isset(Auth::instance()->get_user()->id) )
+		{			// Load User		
+			$this->template->content->loggedin_user = Auth::instance()->get_user();
+		}
+
 		
 		$form = array(
 		'contact_name' => '', 
@@ -145,7 +151,7 @@ Class Ci_Ask_Controller extends Main_Controller
 	
 					$form_sent = TRUE;
 					
-					url::redirect('ci_ask');
+					//url::redirect('ci_ask');
 				}
 				catch (Exception $e)
 				{

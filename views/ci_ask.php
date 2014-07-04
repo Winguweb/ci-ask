@@ -29,7 +29,7 @@
 			<div class="row informacion-header">
 				<div class="col-xs-12 col-md-12" id="ingreso">
 					<h1 class="bold-italic upper">Pedidos de Información</h1>
-					<p class="lead"></p>
+					<p class="lead">A continuación se muestra una lista con los últimos pedidos de información respondidos.</p>
 				</div> 
 			</div>
 			<div class="row informacion-center">			

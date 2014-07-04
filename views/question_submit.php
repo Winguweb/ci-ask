@@ -31,8 +31,9 @@
 	<div class="row content-info">		
 		<div class="row informacion-header">
 			<div class="col-xs-12 col-md-8 col-md-offset-2" id="ingreso">
+				<a href="<?php echo url::site()."ci_ask"; ?>">Volver al listado de Pedidos de información</a>
 				<h1 class="bold-italic upper"><?php echo Kohana::lang('ci_ask.title'); ?></h1>
-				<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu nunc quis mauris semper consequat sed ac purus. Sed odio dui, molestie in odio ac, posuere dignissim diam.</p>
+				<p class="lead">Acá puede dejar su pedido de información para que el equipo lo analice y podamos darle una respuesta.</p>				
 			</div> 		  
 		</div>		
 		<div class="row informacion-center">
@@ -59,16 +60,22 @@
 					?>
 					<!-- green-box -->
 					<div class="alert alert-success">
-						<p><span class="glyphicon glyphicon-ok"></span><?php echo Kohana::lang('ui_main.contact_message_has_send'); ?></p>
+						<p><span class="glyphicon glyphicon-ok"></span>
+						<?php echo Kohana::lang('ui_main.contact_message_has_send'); ?>						
+						</p>
 					</div>
 					<?php
 				}								
+				?>
+				<?php
+				$name = ($loggedin_user != FALSE) ? $loggedin_user->name : '';
+				$email = ($loggedin_user != FALSE) ? $loggedin_user->email : '';
 				?>
 				<?php print form::open(NULL, array('id' => 'contactForm', 'name' => 'contactForm', 'class' => 'form-horizontal')); ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ui_main.contact_name'); ?> <span class="required">*</span></label>
 						<div class="col-sm-9">
-							<?php print form::input('contact_name', $form['contact_name'], ' class="text form-control"'); ?>	
+							<?php print form::input('contact_name', $name, 'class="text form-control"'); ?>	
 						</div>			
 					</div>
 					<div class="form-group">
@@ -80,7 +87,7 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ui_main.contact_email'); ?> <span class="required">*</span></label>
 						<div class="col-sm-9">
-							<?php print form::input('contact_email', $form['contact_email'], ' class="text form-control"'); ?>
+							<?php print form::input('contact_email', $email, ' class="text form-control"'); ?>
 						</div>
 					</div>
 					<div class="form-group">
@@ -111,6 +118,6 @@
 			</div>
 		</div>
 	</div>
-</di>
+</div>
 		
  	
