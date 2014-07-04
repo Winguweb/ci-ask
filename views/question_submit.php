@@ -68,8 +68,13 @@
 				}								
 				?>
 				<?php
+				if(isset($loggedin_user){				
 				$name = ($loggedin_user != FALSE) ? $loggedin_user->name : '';
 				$email = ($loggedin_user != FALSE) ? $loggedin_user->email : '';
+				} else {
+					$name = '';
+					$email = '';
+				}
 				?>
 				<?php print form::open(NULL, array('id' => 'contactForm', 'name' => 'contactForm', 'class' => 'form-horizontal')); ?>
 					<div class="form-group">
