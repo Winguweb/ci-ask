@@ -29,7 +29,10 @@
 			<div class="row informacion-header">
 				<div class="col-xs-12 col-md-12" id="ingreso">
 					<h1 class="bold-italic upper">Pedidos de Información</h1>
-					<p class="lead">A continuación se muestra una lista con los últimos pedidos de información respondidos.</p>
+					<p class="lead">
+						Acá podes encontrar los pedidos de información que se registraron en Caminos de la Villa y las respuestas que obtuvimos de los organismos responsables.
+						Como ciudadano tenés derecho a recibir información pública. El Gobierno de la Nación, 
+					</p>
 				</div> 
 			</div>
 			<div class="row informacion-center">			
@@ -43,7 +46,11 @@
 			</div>
 			-->
 		</div>
-		<div class="col-xs-12 col-md-4 sidebar">
+		<div class="col-xs-12 col-md-4 sidebar jumbotron">
+			<h3 class="upper bold-italic">
+				Escribínos tu pregunta. 
+			</h3>
+			<p>Nosotros nos encargamos de hacer el pedido al organismo que corresponda y avisarte cuando nos respondan</p>
 			<div class="buttons">
 				<a href="<?php echo url::site()."ci_ask/submit"; ?>" type="submit" class="btn btn-danger btn-lg upper bold-italic btn-block">
 					<?php echo Kohana::lang('ci_ask.submit'); ?>

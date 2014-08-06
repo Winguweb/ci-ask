@@ -33,7 +33,9 @@
 			<div class="col-xs-12 col-md-8 col-md-offset-2" id="ingreso">
 				<a href="<?php echo url::site()."ci_ask"; ?>">Volver al listado de Pedidos de información</a>
 				<h1 class="bold-italic upper"><?php echo Kohana::lang('ci_ask.title'); ?></h1>
-				<p class="lead">Acá puede dejar su pedido de información para que el equipo lo analice y podamos darle una respuesta.</p>				
+				<p class="lead">					el Gobierno la Ciudad de Buenos Aires y distintos organismos y empresas del Estado están
+					 obligados a brindarte esa información (de acuerdo al <a href="http://infoleg.mecon.gov.ar/infolegInternet/anexos/90000-94999/90763/norma.htm" target="_blank">Decreto 1172/2003</a> y la <a href="http://www.cedom.gov.ar/es/legislacion/normas/leyes/ley104.html" target="_blank">Ley 104</a>).</p>
+				<p class="lead">En esta sección podés escribirnos tu pregunta. Nosotros nos encargamos de gestionarla ante los organismos que correspondan y enviarte los datos cuando nos den una respuesta.</p>								
 			</div> 		  
 		</div>		
 		<div class="row informacion-center">
