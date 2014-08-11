@@ -14,25 +14,24 @@
   * cuál es la pregunta >> * obligatorio. 
   * Teléfono optativo */
  ?>  
-<div class="container-fluid wg-inner-header">
-  <div class="container">
-	<div class="starter-template">
-	  <div class="row">
-		 <div class="col-md-offset-2 col-md-8 .col-xs-12 text-center">
-		  <div id="logo-home" class="stellar" data-stellar-ratio="4">
-			<img src="<?php echo url::file_loc('images'); ?>themes/ci-theme/images/logo-caminosvilla-2.png" alt="Los Caminos de la Villa" class="img-responsive"/>
-		  </div>
-		</div>
-		 </div>
-	</div>
-  </div>
-</div><!-- /.container-fluid -->
+ <div class="container-fluid wg-inner-header">
+
+      <div class="container">
+        <div class="starter-template" style="margin-top: 50px;">
+          <div class="row">
+             <div class="col-md-10 col-xs-12 text-left">
+                  <h1 class="upper bold-italic"><?php echo Kohana::lang('ci_ask.title'); ?></h1>   
+             </div>
+             </div>
+        </div>
+      </div>
+
+    </div><!-- /.container-fluid -->
 <div class="container main-content isesion">	  
 	<div class="row content-info">		
 		<div class="row informacion-header">
 			<div class="col-xs-12 col-md-8 col-md-offset-2" id="ingreso">
-				<a href="<?php echo url::site()."ci_ask"; ?>">Volver al listado de Pedidos de información</a>
-				<h1 class="bold-italic upper"><?php echo Kohana::lang('ci_ask.title'); ?></h1>
+				<a href="<?php echo url::site()."ci_ask"; ?>">Volver al listado de Pedidos de información</a>				
 				<p class="lead">					el Gobierno la Ciudad de Buenos Aires y distintos organismos y empresas del Estado están
 					 obligados a brindarte esa información (de acuerdo al <a href="http://infoleg.mecon.gov.ar/infolegInternet/anexos/90000-94999/90763/norma.htm" target="_blank">Decreto 1172/2003</a> y la <a href="http://www.cedom.gov.ar/es/legislacion/normas/leyes/ley104.html" target="_blank">Ley 104</a>).</p>
 				<p class="lead">En esta sección podés escribirnos tu pregunta. Nosotros nos encargamos de gestionarla ante los organismos que correspondan y enviarte los datos cuando nos den una respuesta.</p>								

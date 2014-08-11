@@ -10,25 +10,24 @@
  */
  ?>  
 
-<div class="container-fluid wg-inner-header">
-  <div class="container">
-	<div class="starter-template">
-	  <div class="row">
-		 <div class="col-md-offset-2 col-md-8 .col-xs-12 text-center">
-		  <div id="logo-home" class="stellar" data-stellar-ratio="4">
-			<img src="<?php echo url::file_loc('images'); ?>themes/ci-theme/images/logo-caminosvilla-2.png" alt="Los Caminos de la Villa" class="img-responsive"/>
-		  </div>
-		</div>
-		 </div>
-	</div>
-  </div>
-</div><!-- /.container-fluid --> 	
+ <div class="container-fluid wg-inner-header">
+
+      <div class="container">
+        <div class="starter-template" style="margin-top: 50px;">
+          <div class="row">
+             <div class="col-md-10 col-xs-12 text-left">
+                  <h1 class="upper bold-italic">Pedidos de Información</h1>   
+             </div>
+             </div>
+        </div>
+      </div>
+
+    </div><!-- /.container-fluid -->
 <div class="container main-content isesion">          
 	<div class="row content-info"> 
 		<div class="col-xs-12 col-md-8" id="ingreso">
 			<div class="row informacion-header">
 				<div class="col-xs-12 col-md-12" id="ingreso">
-					<h1 class="bold-italic upper">Pedidos de Información</h1>
 					<p class="lead">
 						Acá podes encontrar los pedidos de información que se registraron en Caminos de la Villa y las respuestas que obtuvimos de los organismos responsables.
 						Como ciudadano tenés derecho a recibir información pública. El Gobierno de la Nación, 
