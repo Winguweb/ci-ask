@@ -42,6 +42,18 @@ Class Ci_Ask_Controller extends Admin_Controller
 
 			$messages = array();
 
+			if (! empty($post->message_single)) {
+				$messages[] = $post->message_single;
+			} elseif (! empty($post->message_id)) {
+				$messages = $post->message_id;
+			}
+
+			foreach ($messages as $message) {
+				$status = $action_to_status[$post->action];
+
+				$message = ORM::factory("Ci_Ask_Message")->find($message);
+				$message->updateStatus($status);
+			}
 
 
 			$saved = true;
@@ -108,6 +120,16 @@ Class Ci_Ask_Controller extends Admin_Controller
 
 		$this->themes->js = new View('admin/messages/ci_ask/main_js');		
 	}   
+	
+	function delete($ask_id) 
+	{		
+		$ask = ORM::factory('ci_ask')
+					->where("id", $ask_id)
+					->limit(1)
+					->find();
+		$ask->delete();
+		url::redirect(url::site().'admin/messages/ci_ask/');
+	}
 	
 	function reply($ask_id) 
 	{

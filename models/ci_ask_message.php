@@ -24,6 +24,7 @@ class Ci_Ask_Message_Model extends Message_Model
 	const ALL = 2;
 	const STATUS_TOREVIEW 	= 0;
 	const STATUS_REVIEWED 	= 1;
+	const STATUS_DISCARDED 	= 2;
 	
 
 	

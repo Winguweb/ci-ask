@@ -1,7 +1,7 @@
 <?php require SYSPATH.'../application/views/admin/utils_js.php' ?>
 
 // Form Submission
-function socialMediaAction ( action, confirmAction, id )
+function askAction ( action, confirmAction, id )
 {
 	var statusMessage;
 	var answer = confirm('<?php echo Kohana::lang('ci_ask.messages.are_you_sure_you_want_to_mark_reports'); ?> ' + confirmAction + '?')
@@ -16,6 +16,6 @@ function socialMediaAction ( action, confirmAction, id )
 		// Set Submit Type
 		$(document.getElementById("action")).val(action);
 		// Submit Form
-		$(document.getElementById("socialMediaMain")).submit();
+		$(document.getElementById("askAction")).submit();
 	}
 }

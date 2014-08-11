@@ -26,7 +26,7 @@
 	<div class="tab">
 		<ul>
 			<li>
-				<a href="#" onClick="socialMediaAction('d', '<?php echo utf8::strtoupper(Kohana::lang('ci_ask.discard'));?>', '')">
+				<a href="#" onClick="askAction('d', '<?php echo utf8::strtoupper(Kohana::lang('ci_ask.discard'));?>', '')">
 					<?php echo utf8::strtoupper(Kohana::lang('ci_ask.discard'));?>
 				</a>
 			</li>	
@@ -120,7 +120,7 @@ if ($form_saved) {
 											}
 										?>										
 									</li>
-									<li><a href="<?php echo url::site().'admin/messages/delete/'.$entry_id ?>" onclick="return confirm("<?php echo Kohana::lang('ui_main.action_confirm');?>")" class="del"><?php echo Kohana::lang('ui_main.delete');?></a></li>								
+									<li><a href="<?php echo url::site().'admin/messages/ci_ask/delete/'.$entry_id ?>" onclick="return confirm("<?php echo Kohana::lang('ui_main.action_confirm');?>")" class="del"><?php echo Kohana::lang('ui_main.delete');?></a></li>								
 								</ul>
 							</td>
 						</tr>
