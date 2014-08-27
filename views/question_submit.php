@@ -20,7 +20,7 @@
         <div class="starter-template" style="margin-top: 50px;">
           <div class="row">
              <div class="col-md-10 col-xs-12 text-left">
-                  <h1 class="upper bold-italic"><?php echo Kohana::lang('ci_ask.title'); ?></h1>   
+                  <h1 class="upper bold-italic">Hacé tu pedido de información</h1>   
              </div>
              </div>
         </div>
@@ -32,8 +32,7 @@
 		<div class="row informacion-header">
 			<div class="col-xs-12 col-md-8 col-md-offset-2" id="ingreso">
 				<a href="<?php echo url::site()."ci_ask"; ?>">Volver al listado de Pedidos de información</a>				
-				<p class="lead">					el Gobierno la Ciudad de Buenos Aires y distintos organismos y empresas del Estado están
-					 obligados a brindarte esa información (de acuerdo al <a href="http://infoleg.mecon.gov.ar/infolegInternet/anexos/90000-94999/90763/norma.htm" target="_blank">Decreto 1172/2003</a> y la <a href="http://www.cedom.gov.ar/es/legislacion/normas/leyes/ley104.html" target="_blank">Ley 104</a>).</p>
+				<p class="lead">Como ciudadano tenés derecho a recibir información pública. El Gobierno de la Nación, el Gobierno la Ciudad de Buenos Aires y distintos organismos y empresas del Estado están obligados a brindarte esa información (de acuerdo al <a href="http://infoleg.mecon.gov.ar/infolegInternet/anexos/90000-94999/90763/norma.htm" target="_blank">Decreto 1172/2003</a> y la <a href="http://www.cedom.gov.ar/es/legislacion/normas/leyes/ley104.html" target="_blank">Ley 104</a>).</p>
 				<p class="lead">En esta sección podés escribirnos tu pregunta. Nosotros nos encargamos de gestionarla ante los organismos que correspondan y enviarte los datos cuando nos den una respuesta.</p>								
 			</div> 		  
 		</div>		
@@ -62,8 +61,7 @@
 					<!-- green-box -->
 					<div class="alert alert-success">
 						<p><span class="glyphicon glyphicon-ok"></span>
-						<?php echo Kohana::lang('ui_main.contact_message_has_send'); ?>						
-						</p>
+						<?php echo "¡Gracias! Recibimos tu pregunta correctamente. En los próximos días gestionaremos tu pedido al organismo que corresponda. ¡Cuando tengamos la respuesta te la enviamos!";?>				</p>
 					</div>
 					<?php
 				}								

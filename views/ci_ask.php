@@ -30,7 +30,6 @@
 				<div class="col-xs-12 col-md-12" id="ingreso">
 					<p class="lead">
 						Acá podes encontrar los pedidos de información que se registraron en Caminos de la Villa y las respuestas que obtuvimos de los organismos responsables.
-						Como ciudadano tenés derecho a recibir información pública. El Gobierno de la Nación, 
 					</p>
 				</div> 
 			</div>
