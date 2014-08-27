@@ -46,7 +46,7 @@
 		</div>
 		<div class="col-xs-12 col-md-4 sidebar jumbotron">
 			<h3 class="upper bold-italic">
-				Escribínos tu pregunta. 
+				Hacé tu pedido de información. 
 			</h3>
 			<p>Nosotros nos encargamos de hacer el pedido al organismo que corresponda y avisarte cuando nos respondan</p>
 			<div class="buttons">

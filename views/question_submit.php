@@ -76,31 +76,31 @@
 				?>
 				<?php print form::open(NULL, array('id' => 'contactForm', 'name' => 'contactForm', 'class' => 'form-horizontal')); ?>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ui_main.contact_name'); ?> <span class="required">*</span></label>
+						<label class="col-sm-3 control-label"><?php echo "Tu nombre" ?> <span class="required">*</span></label>
 						<div class="col-sm-9">
 							<?php print form::input('contact_name', $name, 'class="text form-control"'); ?>	
 						</div>			
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ci_ask.address'); ?> <span class="required">*</span></label>
+						<label class="col-sm-3 control-label"><?php echo "Tu domicilio/barrio" ?> <span class="required">*</span></label>
 						<div class="col-sm-9">
 							<?php print form::input('contact_address', $form['contact_address'], ' class="text form-control"'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ui_main.contact_email'); ?> <span class="required">*</span></label>
+						<label class="col-sm-3 control-label"><?php echo "Tu email" ?> <span class="required">*</span></label>
 						<div class="col-sm-9">
 							<?php print form::input('contact_email', $email, ' class="text form-control"'); ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ui_main.contact_phone'); ?></label>
+						<label class="col-sm-3 control-label"><?php echo "Tu teléfono" ?></label>
 						<div class="col-sm-9">
 							<?php print form::input('contact_phone', $form['contact_phone'], ' class="text form-control"'); ?>
 						</div>
 					</div>						
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo Kohana::lang('ci_ask.message'); ?> <span class="required">*</span> </label>
+						<label class="col-sm-3 control-label"><?php echo "Tu mensaje" ?> <span class="required">*</span> </label>
 						<div class="col-sm-9">
 							<?php print form::textarea('contact_message', $form['contact_message'], ' rows="4" cols="40" class="textarea form-control long" ') ?>
 						</div>
